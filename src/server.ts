@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
 import express, { Express } from "express";
-import { Mainendpoint } from "./routes/mainEndpoint";
+import { boatEndpoint } from "./routes/apiBoatEndpoint";
 import "./utils/connect-db";
 import bodyParser from "body-parser";
 const app: Express = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/api", Mainendpoint);
+app.use("/api", boatEndpoint); 
 app.listen(8080, () => console.log("Listening to 8080"));
