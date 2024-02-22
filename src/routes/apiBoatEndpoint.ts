@@ -2,12 +2,12 @@ import { Router, Response, Request } from "express";
 import { Boat } from "../Schemas/Boat";
 export const boatEndpoint: Router = Router();
 
-boatEndpoint.get("/boats", async (req: Request, res: Response) => {
+boatEndpoint.get("/list", async (req: Request, res: Response) => {
   const boats = await Boat.find();
   res.send({ boats });
 });
 
-boatEndpoint.post("/boats", async (req: Request, res: Response) => {
+boatEndpoint.post("/insert", async (req: Request, res: Response) => {
   try {
     const { name, specifications, equipment } = req.body;
     let query: Record<string, object> = {
