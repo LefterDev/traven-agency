@@ -6,7 +6,7 @@ const generatedKey = scryptSync(adminKey as string, "salt", 24);
 const encryption_algorithm = process.env.ENC_ALG;
 const initilizationVector = randomBytes(16);
 
-const createAdminKey = async ( username: string, password: string, res: Response ) => {
+export const createAdminKey = async ( username: string, password: string, res: Response ) => {
   try {
     //* Check if there is already a pre-registration admin account on this username
     const { response } = await checkAdminAccount(username);
@@ -65,7 +65,7 @@ const decryptAdminKey = async ( username: string, res: Response ) => {
   }
 };
 
-const createAdminAccount = async ( username: string, email: string, res: Response ) => {
+export const createAdminAccount = async ( username: string, email: string, res: Response ) => {
   try {
     //* Check if there is an pre-registration admin account on this username
     const { response } = await checkAdminAccount(username)
@@ -107,5 +107,3 @@ async function checkAdminAccount(username: string) {
   //* Else return false
   return { response: false };
 }
-//$ Export functions
-export = { createAdminKey, createAdminAccount };
