@@ -2,9 +2,9 @@ import { scryptSync, randomBytes, createCipheriv, createDecipheriv} from "node:c
 import { Response } from "express";
 import { AdminAccount, AdminPreRegistration } from "../Schemas/Admin";
 const adminKey = process.env.ADMIN_KEY || "admin";
-const generatedKey = scryptSync(adminKey as string, "salt", 32);
-const encryption_algorithm = process.env.ENC_ALG || "aes-256-cbc";
-const initilizationVector = randomBytes(16);
+const generatedKey = scryptSync(adminKey as string, "salt", 24);
+const encryption_algorithm = process.env.ENC_ALG || "aes-192-ecb";
+const initilizationVector = Buffer.alloc(16, 0);
 
 export const createAdminKey = async ( username: string, password: string, res: Response ) => {
   try {
